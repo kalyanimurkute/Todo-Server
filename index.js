@@ -1,11 +1,25 @@
 import cors from 'cors';
 import express from 'express';
-const app = express();
-app.use(express.json());
-app.use(cors());
-const PORT = 8030;
-const Todo_items = ["Buy groceries", "Clean the house", "Finish homework", "Go for a run", "Read a book", "Cook dinner", "Write a blog post", "Plan a trip"];
 
+const app = express();
+const PORT = 8030;
+app.use(cors({
+  origin: "https://todo-client-assignment-8gqw.onrender.com",
+  methods: ["GET", "POST", "PUT", "DELETE"],
+}));
+
+app.use(express.json());
+
+const Todo_items = [
+  "Buy groceries",
+  "Clean the house",
+  "Finish homework",
+  "Go for a run",
+  "Read a book",
+  "Cook dinner",
+  "Write a blog post",
+  "Plan a trip"
+];
 app.get('/', (req, res) => {
    return res.json({
     success: true,
@@ -19,6 +33,7 @@ app.get('/todo', (req, res) => {
         message: 'Todo items retrieved successfully'
     })
 });
+
 app.post('/todo', (req, res) => {    
     const { item } = req.body;
     if (!item) {
