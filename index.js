@@ -1,15 +1,9 @@
 import cors from 'cors';
 import express from 'express';
-
 const app = express();
-const PORT = 8030;
-app.use(cors({
-  origin: "https://todo-client-assignment-8gqw.onrender.com",
-  methods: ["GET", "POST", "PUT", "DELETE"],
-}));
-
+app.use(cors());
 app.use(express.json());
-
+const PORT = 8030;
 const Todo_items = [
   "Buy groceries",
   "Clean the house",
